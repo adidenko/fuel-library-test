@@ -1,5 +1,5 @@
 access:
-  email: admin@example.org
+  email: admin@localhost
   metadata:
     label: Access
     weight: 10
@@ -10,15 +10,15 @@ auth_key: ''
 auto_assign_floating_ip: false
 base_syslog:
   syslog_port: '514'
-  syslog_server: 10.108.0.2
+  syslog_server: 10.109.0.2
 ceilometer:
-  db_password: RrNDTSV7
+  db_password: TSvQLyGo
   enabled: true
-  metering_secret: zjzTMzQx
-  user_password: SaYwL0f1
+  metering_secret: xrWpM2cn
+  user_password: dcYTM32w
 cinder:
-  db_password: l1dQg37M
-  user_password: Do0UsZFE
+  db_password: n0kS4AF1
+  user_password: yJztKZcF
 cobbler:
   profile: centos-x86_64
 compute_scheduler_driver: nova.scheduler.filter_scheduler.FilterScheduler
@@ -33,20 +33,20 @@ corosync:
   port: '12000'
   verified: false
 debug: true
-deployment_id: 10
+deployment_id: 5
 deployment_mode: ha_compact
 fail_if_error: false
-fqdn: node-26.test.domain.local
+fqdn: node-19.test.domain.local
 fuel_version: '6.0'
 glance:
-  db_password: 73E9kPKl
+  db_password: Cia3T7uP
   image_cache_max_size: '5368709120'
-  user_password: ujT552YX
+  user_password: WbgzImXq
 heat:
-  db_password: dVwsnTrO
+  db_password: npBTvUfx
   enabled: true
-  rabbit_password: RO5cBf06
-  user_password: vKSgHb3C
+  rabbit_password: By8LGdbP
+  user_password: SRQiiAT9
 kernel_params:
   kernel: console=ttyS0,9600 console=tty0 biosdevname=0 crashkernel=none rootdelay=90
     nomodeset ipmi_si.tryacpi=0 ipmi_si.trydmi=0 ipmi_si.trydefaults=0
@@ -54,13 +54,13 @@ kernel_params:
     label: Kernel parameters
     weight: 40
 keystone:
-  admin_token: soHI9zbb
-  db_password: wBgeoQIs
-last_controller: node-31
+  admin_token: lFSXKxf8
+  db_password: OhsTTH6U
+last_controller: node-21
 libvirt_type: kvm
 management_network_range: 192.168.0.0/24
 management_vip: 192.168.0.7
-master_ip: 10.108.0.2
+master_ip: 10.109.0.2
 metadata:
   label: Common
   weight: 30
@@ -70,26 +70,31 @@ mp:
 - point: '2'
   weight: '2'
 murano:
-  db_password: DsfuB3h4
+  db_password: 8fNR8qAq
   enabled: true
-  rabbit_password: Lz6QlKki
-  user_password: gufDSGFw
+  rabbit_password: zYot8t56
+  user_password: a7pzpf2t
 mysql:
-  root_password: jTMzqffv
+  root_password: fERmb8v4
 network_scheme:
   endpoints:
     br-fw-admin:
       IP:
-      - 10.108.0.4/24
-      gateway: 10.108.0.2
+      - 10.109.0.5/24
+      default_gateway: true
+      gateway: 10.109.0.2
+      other_nets:
+      - 10.109.0.0/24
     br-mgmt:
       IP:
-      - 192.168.0.3/24
+      - 192.168.0.4/24
+      other_nets: []
     br-prv:
       IP: none
     br-storage:
       IP:
-      - 192.168.1.3/24
+      - 192.168.1.4/24
+      other_nets: []
   interfaces:
     eth0:
       L2:
@@ -151,11 +156,17 @@ network_scheme:
     tags:
     - 472
     - 0
+    vlan_ids:
+    - 472
+    - 0
   - action: add-patch
     bridges:
     - br-eth0
     - br-mgmt
     tags:
+    - 471
+    - 0
+    vlan_ids:
     - 471
     - 0
   - action: add-patch
@@ -180,61 +191,61 @@ neutron_mellanox:
   plugin: disabled
   vf_num: '16'
 nodes:
-- fqdn: node-25.test.domain.local
+- fqdn: node-14.test.domain.local
   internal_address: 192.168.0.2
   internal_netmask: 255.255.255.0
-  name: node-25
+  name: node-14
   role: cinder
   storage_address: 192.168.1.2
   storage_netmask: 255.255.255.0
-  swift_zone: '25'
-  uid: '25'
-- fqdn: node-26.test.domain.local
+  swift_zone: '14'
+  uid: '14'
+- fqdn: node-18.test.domain.local
   internal_address: 192.168.0.3
   internal_netmask: 255.255.255.0
-  name: node-26
-  role: compute
-  storage_address: 192.168.1.3
-  storage_netmask: 255.255.255.0
-  swift_zone: '26'
-  uid: '26'
-- fqdn: node-29.test.domain.local
-  internal_address: 192.168.0.4
-  internal_netmask: 255.255.255.0
-  name: node-29
+  name: node-18
   public_address: 10.16.122.2
   public_netmask: 255.255.255.0
   role: primary-controller
+  storage_address: 192.168.1.3
+  storage_netmask: 255.255.255.0
+  swift_zone: '18'
+  uid: '18'
+- fqdn: node-19.test.domain.local
+  internal_address: 192.168.0.4
+  internal_netmask: 255.255.255.0
+  name: node-19
+  role: compute
   storage_address: 192.168.1.4
   storage_netmask: 255.255.255.0
-  swift_zone: '29'
-  uid: '29'
-- fqdn: node-30.test.domain.local
+  swift_zone: '19'
+  uid: '19'
+- fqdn: node-20.test.domain.local
   internal_address: 192.168.0.5
   internal_netmask: 255.255.255.0
-  name: node-30
+  name: node-20
   public_address: 10.16.122.3
   public_netmask: 255.255.255.0
   role: controller
   storage_address: 192.168.1.5
   storage_netmask: 255.255.255.0
-  swift_zone: '30'
-  uid: '30'
-- fqdn: node-31.test.domain.local
+  swift_zone: '20'
+  uid: '20'
+- fqdn: node-21.test.domain.local
   internal_address: 192.168.0.6
   internal_netmask: 255.255.255.0
-  name: node-31
+  name: node-21
   public_address: 10.16.122.4
   public_netmask: 255.255.255.0
   role: controller
   storage_address: 192.168.1.6
   storage_netmask: 255.255.255.0
-  swift_zone: '31'
-  uid: '31'
+  swift_zone: '21'
+  uid: '21'
 nova:
-  db_password: H0E8ntNZ
+  db_password: UagDGPCA
   state_path: /var/lib/nova
-  user_password: QVgnArMN
+  user_password: aGmjU1ao
 nova_quota: false
 nsx_plugin:
   connector_type: stt
@@ -251,11 +262,29 @@ nsx_plugin:
   nsx_password: ''
   nsx_username: admin
   packages_url: ''
+  replication_mode: true
   transport_zone_uuid: ''
 online: true
 openstack_version: 2014.2-6.0
 openstack_version_prev: null
 priority: 700
+provision:
+  image_data:
+    /:
+      container: gzip
+      format: ext4
+      uri: http://10.109.0.2:8080/targetimages/centos_65_x86_64.img.gz
+    /boot:
+      container: gzip
+      format: ext2
+      uri: http://10.109.0.2:8080/targetimages/centos_65_x86_64-boot.img.gz
+  metadata:
+    label: Provision
+    restrictions:
+    - action: hide
+      condition: not ('experimental' in version:feature_groups)
+    weight: 80
+  method: cobbler
 public_network_assignment:
   assign_to_all_nodes: false
   metadata:
@@ -265,8 +294,8 @@ public_network_assignment:
       condition: cluster:net_provider != 'neutron'
     weight: 50
 public_vip: 10.16.122.5
-puppet_manifests_source: rsync://10.108.0.2:/puppet/manifests/
-puppet_modules_source: rsync://10.108.0.2:/puppet/modules/
+puppet_manifests_source: rsync://10.109.0.2:/puppet/manifests/
+puppet_modules_source: rsync://10.109.0.2:/puppet/modules/
 quantum: true
 quantum_settings:
   L2:
@@ -279,11 +308,11 @@ quantum_settings:
   L3:
     use_namespaces: true
   database:
-    passwd: WdiAvJqx
+    passwd: yN2IAqgQ
   keystone:
-    admin_password: i8etpRAr
+    admin_password: Amvhh8se
   metadata:
-    metadata_proxy_shared_secret: y5oQlvjF
+    metadata_proxy_shared_secret: 1AYcBhxX
   predefined_networks:
     net04:
       L2:
@@ -316,19 +345,20 @@ quantum_settings:
       shared: false
       tenant: admin
 rabbit:
-  password: DgQXcmpD
+  password: ijZAmpkX
 repo_metadata:
-  nailgun: http://10.108.0.2:8080/centos/fuelweb/x86_64
+  nailgun: http://10.109.0.2:8080/centos/x86_64
 resume_guests_state_on_host_boot: true
 role: compute
 sahara:
-  db_password: XxWigIi9
+  db_password: zfhUJ4OD
   enabled: true
-  user_password: EilBTaJf
+  user_password: X8Rw6ZQp
 status: discover
 storage:
   ephemeral_ceph: false
   images_ceph: false
+  images_vcenter: false
   iser: false
   metadata:
     label: Storage
@@ -336,12 +366,18 @@ storage:
   objects_ceph: false
   osd_pool_size: '2'
   pg_num: 128
+  vc_datacenter: ''
+  vc_datastore: ''
+  vc_host: ''
+  vc_image_dir: /openstack_glance
+  vc_password: ''
+  vc_user: ''
   volumes_ceph: false
   volumes_lvm: true
   volumes_vmdk: false
 storage_network_range: 192.168.1.0/24
 swift:
-  user_password: ykgme8Xm
+  user_password: IzhBamea
 syslog:
   metadata:
     label: Syslog
@@ -359,7 +395,7 @@ test_vm_image:
   min_ram: 64
   os_name: cirros
   public: 'true'
-uid: '26'
+uid: '19'
 use_cinder: true
 use_cow_images: true
 vcenter:
@@ -385,8 +421,8 @@ vlan_splinters:
     weight: 50
   vswitch: disabled
 zabbix:
-  db_password: 6gR0ExZc
-  db_root_password: XsxqVbMi
+  db_password: Bxke7nzL
+  db_root_password: Y3oVSEMy
   metadata:
     label: Zabbix Access
     restrictions:
