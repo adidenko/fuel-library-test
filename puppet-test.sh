@@ -65,8 +65,11 @@ fi
 mkdir -p "$LOG_DIR"
 mkdir -p /etc/fuel
 if [ "$COMMAND" == "res" ] ; then
-  RES_RB=$(gem contents puppet | grep lib/puppet/application/apply.rb | sed -e "s#apply.rb#res.rb#")
-  [ -f "$RES_RB" ] || curl -s https://raw.githubusercontent.com/dmitryilyin/fuel-tools/master/ruby/res.rb > "$RES_RB"
+  PLIBDIR=$(puppet config print libdir)
+  [ -f "$PLIBDIR/puppet/application/res.rb" ] || (
+    mkdir -p $PLIBDIR/puppet/application/
+    curl -s https://raw.githubusercontent.com/dmitryilyin/fuel-tools/master/ruby/res.rb > "$PLIBDIR/puppet/application/res.rb"
+  )
 fi
 
 # Let's rock-n-roll
