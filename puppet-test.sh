@@ -73,7 +73,8 @@ if [ "$COMMAND" == "res" ] ; then
 fi
 
 # Let's rock-n-roll
-echo -e "\nTesting with puppet '$COMMAND' command\n"
+echo -e "\nTesting with puppet '$COMMAND' command"
+echo -e "Module path: $MODULE_PATH\n"
 printf "%-70s%-10s %s\n" "YAML EXAMPLE" "RESULT" "LOGFILE"
 for YAML in $YAMLS ; do
     printf "%-70s" "Running $YAML ..."
