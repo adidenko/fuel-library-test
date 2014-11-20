@@ -12,6 +12,16 @@ export MODULE_PATH="/path-to-your-copy-of/fuel-library/deployment/puppet"
     apply   - runs puppet apply with '--noop' option and saves output into logfiles
 ```
 
+Available ENV variables
+-----------------------
+
+* ```FUEL_VER``` - determines what version of yamls to use. Check ```astute-yaml``` directory for available versions.
+* ```MODULE_PATH``` - puppet ```--modulepath``` parameter. Sets the directory fuel-library manifests stored in.
+* ```SITE_PP``` - full path and filename of ```site.pp``` you want to test. If not specified, script will look for it in your ```MODULE_PATH```.
+* ```LOG_DIR``` - directory for test logs.
+
+
+
 Output example
 --------------
 
