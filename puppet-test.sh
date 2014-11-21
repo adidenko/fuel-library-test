@@ -79,7 +79,7 @@ printf "%-70s%-10s %s\n" "YAML EXAMPLE" "RESULT" "LOGFILE"
 for YAML in $YAMLS ; do
     printf "%-70s" "Running $YAML ..."
     cat "$YAML_BASE/$YAML" > /etc/fuel/astute.yaml
-    ( FACTER_hostname=`awk '/^fqdn:/{print $2}' /etc/fuel/astute.yaml | cut -d. -f1` puppet $COMMAND -d -v --modulepath $MODULE_PATH $SITE_PP ; echo Exit code: $? ; echo ) &> $LOG_DIR/${YAML}.log
+    ( FACTER_hostname=`awk '/^fqdn:/{print $2}' /etc/fuel/astute.yaml | cut -d. -f1` puppet $COMMAND -d -v --trace --modulepath $MODULE_PATH $SITE_PP ; echo Exit code: $? ; echo ) &> $LOG_DIR/${YAML}.log
     if grep -q 'Exit code: 0' $LOG_DIR/${YAML}.log && ! grep -q 'Error: Could not apply complete catalog' $LOG_DIR/${YAML}.log ; then
         printf "%-10s %s\n" "OK" "$LOG_DIR/${YAML}.log"
     else

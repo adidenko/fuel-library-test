@@ -19,7 +19,15 @@ Available ENV variables
 * ```MODULE_PATH``` - puppet ```--modulepath``` parameter. Sets the directory fuel-library manifests stored in.
 * ```SITE_PP``` - full path and filename of ```site.pp``` you want to test. If not specified, script will look for it in your ```MODULE_PATH```.
 * ```LOG_DIR``` - directory for test logs.
+* ```YAMLS``` - list of particular astute.yaml settings you want to test. Example:
 
+Usage Examples
+--------------
+
+* Run tests against ```simple_nova_flat_cei.controller.yaml``` config:
+```bash
+YAMLS=simple_nova_flat_cei.controller.yaml ./puppet-test.sh
+```
 
 
 Output example
