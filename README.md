@@ -24,8 +24,8 @@ Available ENV variables
 Usage Examples
 --------------
 
-* Run tests against ```simple_nova_flat_cei.controller.yaml``` config:
-```bash
+* Run tests for ```simple_nova_flat_cei.controller.yaml``` config:
+```
 YAMLS=simple_nova_flat_cei.controller.yaml ./puppet-test.sh
 ```
 
