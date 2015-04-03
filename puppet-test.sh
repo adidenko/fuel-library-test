@@ -16,7 +16,7 @@ if [ -z "$FUEL_VER" ] ; then
   FUEL_VER="6.0"
 fi
 
-if [ -z "$SITE_PP"] ; then
+if [ -z "$SITE_PP" ] ; then
   SITE_PP="/zkskksjkdjd/dkldjdkjdkd/dkdkdjdkjd/dkdjdkjd"
 fi
 
@@ -24,7 +24,7 @@ if [ -z "$MODULE_PATH" ] ; then
   MODULE_PATH='/tmp/modules/upstream:/tmp/modules/fuel-library/deployment/puppet'
 fi
 
-if [ -z "$YAML_BASE"] ; then
+if [ -z "$YAML_BASE" ] ; then
   YAML_BASE="./astute-yaml/$FUEL_VER"
 fi
 
@@ -79,7 +79,7 @@ printf "%-70s%-10s %s\n" "YAML EXAMPLE" "RESULT" "LOGFILE"
 for YAML in $YAMLS ; do
     printf "%-70s" "Running $YAML ..."
     cat "$YAML_BASE/$YAML" > /etc/fuel/astute.yaml
-    ( FACTER_hostname=`awk '/^fqdn:/{print $2}' /etc/fuel/astute.yaml | cut -d. -f1` puppet $COMMAND -d -v --trace --modulepath $MODULE_PATH $SITE_PP ; echo Exit code: $? ; echo ) &> $LOG_DIR/${YAML}.log
+    ( FACTER_fqdn='node-24.mgmt.shared.prz' FACTER_osfamily='RedHat' FACTER_hostname=`awk '/^fqdn:/{print $2}' /etc/fuel/astute.yaml | cut -d. -f1` puppet $COMMAND -d -v --trace --modulepath $MODULE_PATH $SITE_PP ; echo Exit code: $? ; echo ) &> $LOG_DIR/${YAML}.log
     if grep -q 'Exit code: 0' $LOG_DIR/${YAML}.log && ! grep -q 'Error: Could not apply complete catalog' $LOG_DIR/${YAML}.log ; then
         printf "%-10s %s\n" "OK" "$LOG_DIR/${YAML}.log"
     else
